@@ -1,6 +1,11 @@
 title: Dependable, Efficient, and Intelligent Computing Lab (DETAIL)
 # Custom design: own _layouts + assets/css/site.css (no remote theme).
 
+# --- preview-only (do NOT merge upstream) ---
+# Served as a project page at https://wdzhwsh4067.github.io/vu-detail.github.io/
+baseurl: "/vu-detail.github.io"
+url: "https://wdzhwsh4067.github.io"
+
 # --- Reading Notes ---
 # Each reading note is a document in the `notes` collection (folder _notes/).
 # The Sveltia CMS at /admin/ creates one Markdown file per paper here.
