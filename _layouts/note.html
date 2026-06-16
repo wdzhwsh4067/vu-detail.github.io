@@ -1,0 +1,140 @@
+---
+layout: default
+---
+<!--
+  Single reading note. Inherits Cayman via `layout: default`.
+  Applied automatically to every doc in the `notes` collection (see _config.yml defaults).
+  Every field is guarded with {% if %} so empty ones disappear.
+-->
+<link rel="stylesheet" href="{{ '/assets/css/reading.css' | relative_url }}">
+
+<div class="rn rn--single">
+
+  <nav class="rn-sitenav" aria-label="Primary">
+    <a href="{{ '/' | relative_url }}">Home</a> |
+    <a href="{{ '/people' | relative_url }}">People</a> |
+    <a href="{{ '/research' | relative_url }}">Research</a> |
+    <a href="{{ '/publication' | relative_url }}">Publication</a> |
+    <a href="{{ '/about' | relative_url }}">About</a> |
+    <a href="{{ '/artifact' | relative_url }}">Artifact</a> |
+    <a href="{{ '/reading' | relative_url }}">Reading Notes</a>
+  </nav>
+
+  <p class="rn-back"><a href="{{ '/reading' | relative_url }}"><span aria-hidden="true">←</span> All reading notes</a></p>
+
+  <article class="rn-note">
+
+    <header class="rn-note-head">
+      <div class="rn-card-meta">
+        <span class="rn-member"><span class="rn-dot" aria-hidden="true"></span>{{ page.member | escape | default: 'Unknown' }}</span>
+        {% if page.date %}<time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%Y-%m-%d' }}</time>{% endif %}
+      </div>
+
+      <h1 class="rn-note-title">{{ page.title | escape | default: 'Untitled note' }}</h1>
+
+      {% if page.authors or page.venue or page.year %}
+      <p class="rn-note-cite">
+        {% if page.authors %}{{ page.authors | escape }}{% endif %}{% if page.venue %} · {{ page.venue | escape }}{% endif %}{% if page.year %} · {{ page.year | escape }}{% endif %}
+      </p>
+      {% endif %}
+
+      {% if page.tags and page.tags.size > 0 %}
+      <ul class="rn-tags" aria-label="Tags">
+        {% for t in page.tags %}<li class="rn-tag" data-tag="{{ t | downcase | escape }}">{{ t | escape }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if page.link or page.artifacts %}
+      <p class="rn-note-actions">
+        {% if page.link %}<a class="rn-btn" href="{{ page.link | escape }}" rel="noopener">Paper / DOI <span aria-hidden="true">↗</span></a>{% endif %}
+        {% if page.artifacts %}<a class="rn-btn" href="{{ page.artifacts | escape }}" rel="noopener">Code / artifacts <span aria-hidden="true">↗</span></a>{% endif %}
+      </p>
+      {% endif %}
+    </header>
+
+    {% if page.citation %}
+    <section class="rn-section rn-section--cite">
+      <h2>Citation (IEEE)</h2>
+      <p class="rn-citation">{{ page.citation | escape }}</p>
+    </section>
+    {% endif %}
+
+    {% if page.tldr %}
+    <section class="rn-section rn-section--tldr">
+      <h2>TL;DR</h2>
+      <p>{{ page.tldr | escape }}</p>
+    </section>
+    {% endif %}
+
+    {% if page.problem %}
+    <section class="rn-section">
+      <h2>Problem / Motivation</h2>
+      <p>{{ page.problem | escape | newline_to_br }}</p>
+    </section>
+    {% endif %}
+
+    {% if page.method %}
+    <section class="rn-section">
+      <h2>Key idea / Method</h2>
+      <p>{{ page.method | escape | newline_to_br }}</p>
+    </section>
+    {% endif %}
+
+    {% if page.contributions %}
+    <section class="rn-section">
+      <h2>Main contributions</h2>
+      <p>{{ page.contributions | escape | newline_to_br }}</p>
+    </section>
+    {% endif %}
+
+    {% if page.results %}
+    <section class="rn-section">
+      <h2>Results <span class="rn-section-hint">datasets · metrics · baselines</span></h2>
+      <p>{{ page.results | escape | newline_to_br }}</p>
+    </section>
+    {% endif %}
+
+    {% if page.strengths or page.weaknesses %}
+    <div class="rn-twocol">
+      {% if page.strengths %}
+      <section class="rn-section rn-section--good">
+        <h2>Strengths</h2>
+        <p>{{ page.strengths | escape | newline_to_br }}</p>
+      </section>
+      {% endif %}
+      {% if page.weaknesses %}
+      <section class="rn-section rn-section--bad">
+        <h2>Weaknesses / Limitations</h2>
+        <p>{{ page.weaknesses | escape | newline_to_br }}</p>
+      </section>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if page.relevance %}
+    <section class="rn-section rn-section--relevance">
+      <h2>Relevance to DETAIL</h2>
+      <p>{{ page.relevance | escape | newline_to_br }}</p>
+    </section>
+    {% endif %}
+
+    {% if page.open_questions %}
+    <section class="rn-section">
+      <h2>Open questions / Follow-ups</h2>
+      <p>{{ page.open_questions | escape | newline_to_br }}</p>
+    </section>
+    {% endif %}
+
+    {% assign body = content | strip %}
+    {% if body != "" %}
+    <section class="rn-section rn-section--body">
+      <h2>Notes</h2>
+      {{ content }}
+    </section>
+    {% endif %}
+
+  </article>
+
+  <p class="rn-back rn-back--bottom"><a href="{{ '/reading' | relative_url }}"><span aria-hidden="true">←</span> All reading notes</a></p>
+
+</div>

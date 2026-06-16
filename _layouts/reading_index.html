@@ -1,0 +1,150 @@
+---
+layout: default
+---
+<!--
+  Reading Notes index. Inherits Cayman via `layout: default`.
+  Iterates the `notes` collection newest-first with client-side member+tag filtering.
+  Used by reading.md (which sets `layout: reading_index`).
+-->
+<link rel="stylesheet" href="{{ '/assets/css/reading.css' | relative_url }}">
+
+<div class="rn">
+
+  <nav class="rn-sitenav" aria-label="Primary">
+    <a href="{{ '/' | relative_url }}">Home</a> |
+    <a href="{{ '/people' | relative_url }}">People</a> |
+    <a href="{{ '/research' | relative_url }}">Research</a> |
+    <a href="{{ '/publication' | relative_url }}">Publication</a> |
+    <a href="{{ '/about' | relative_url }}">About</a> |
+    <a href="{{ '/artifact' | relative_url }}">Artifact</a> |
+    <strong aria-current="page">Reading Notes</strong>
+  </nav>
+
+  <header class="rn-head">
+    <div class="rn-head-row">
+      <div>
+        <h1 class="rn-title">Reading Notes</h1>
+        <p class="rn-sub">DETAIL lab weekly paper-reading notes — newest first.</p>
+      </div>
+      <a class="rn-add" href="{{ '/admin/' | relative_url }}">✎ Add / edit a note</a>
+    </div>
+  </header>
+
+  {% comment %} Newest-first by record date. {% endcomment %}
+  {% assign notes = site.notes | sort: 'date' | reverse %}
+
+  {% comment %} Build de-duplicated member + tag option lists for the dropdowns. {% endcomment %}
+  {% assign members = notes | map: 'member' | uniq | sort %}
+  {% assign tag_str = "" %}
+  {% for n in notes %}{% for t in n.tags %}{% assign tag_str = tag_str | append: t | append: "," %}{% endfor %}{% endfor %}
+  {% assign tags = tag_str | split: "," | uniq | sort %}
+
+  <form class="rn-filters" role="search" aria-label="Filter reading notes">
+    <div class="rn-field rn-field--grow">
+      <label for="rn-q">Search</label>
+      <input type="search" id="rn-q" placeholder="Title, author, keyword…" autocomplete="off">
+    </div>
+    <div class="rn-field">
+      <label for="rn-member">Member</label>
+      <select id="rn-member">
+        <option value="">All members</option>
+        {% for m in members %}<option value="{{ m | downcase }}">{{ m | escape }}</option>{% endfor %}
+      </select>
+    </div>
+    <div class="rn-field">
+      <label for="rn-tag">Tag</label>
+      <select id="rn-tag">
+        <option value="">All tags</option>
+        {% for t in tags %}<option value="{{ t | downcase }}">{{ t | escape }}</option>{% endfor %}
+      </select>
+    </div>
+    <button type="button" id="rn-reset" class="rn-reset">Reset</button>
+    <p class="rn-count" id="rn-count" aria-live="polite"></p>
+  </form>
+
+  <ul class="rn-grid" id="rn-grid">
+    {% for note in notes %}
+      {% assign primary = note.tags | first %}
+      <li class="rn-card" data-tag-accent="{{ primary | downcase | escape }}"
+          data-member="{{ note.member | downcase | escape }}"
+          data-tags="{% for t in note.tags %}{{ t | downcase | escape }} {% endfor %}"
+          data-search="{{ note.title | append: ' ' | append: note.authors | append: ' ' | append: note.venue | append: ' ' | append: note.tldr | downcase | escape }}">
+        <article>
+          <div class="rn-card-meta">
+            <span class="rn-member"><span class="rn-dot" aria-hidden="true"></span>{{ note.member | escape | default: 'Unknown' }}</span>
+            {% if note.date %}<time datetime="{{ note.date | date: '%Y-%m-%d' }}">{{ note.date | date: '%Y-%m-%d' }}</time>{% endif %}
+          </div>
+          <h2 class="rn-card-title">
+            <a href="{{ note.url | relative_url }}">{{ note.title | escape | default: 'Untitled note' }}</a>
+          </h2>
+          {% if note.authors or note.venue or note.year %}
+          <p class="rn-card-cite">
+            {% if note.authors %}{{ note.authors | escape }}{% endif %}{% if note.venue %} · {{ note.venue | escape }}{% endif %}{% if note.year %} · {{ note.year | escape }}{% endif %}
+          </p>
+          {% endif %}
+          {% if note.tags and note.tags.size > 0 %}
+          <ul class="rn-tags" aria-label="Tags">
+            {% for t in note.tags %}<li class="rn-tag" data-tag="{{ t | downcase | escape }}">{{ t | escape }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+          {% if note.tldr %}<p class="rn-card-tldr">{{ note.tldr | escape }}</p>{% endif %}
+          <a class="rn-readmore" href="{{ note.url | relative_url }}">Read full note <span aria-hidden="true">→</span></a>
+        </article>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% if notes.size == 0 %}
+  <p class="rn-empty">No notes yet. <a href="{{ '/admin/' | relative_url }}">Add the first one →</a></p>
+  {% endif %}
+  <p class="rn-empty" id="rn-empty" hidden>No notes match those filters. <button type="button" id="rn-clear2" class="rn-linkbtn">Clear filters</button></p>
+
+</div>
+
+<script>
+(function () {
+  var grid = document.getElementById('rn-grid');
+  if (!grid) return;
+  var cards  = Array.prototype.slice.call(grid.querySelectorAll('.rn-card'));
+  var q      = document.getElementById('rn-q');
+  var member = document.getElementById('rn-member');
+  var tag    = document.getElementById('rn-tag');
+  var count  = document.getElementById('rn-count');
+  var empty  = document.getElementById('rn-empty');
+
+  function apply() {
+    var qv = (q.value || '').trim().toLowerCase();
+    var mv = member.value;
+    var tv = tag.value;
+    var shown = 0;
+    cards.forEach(function (card) {
+      var okM = !mv || card.getAttribute('data-member') === mv;
+      var okT = !tv || (' ' + card.getAttribute('data-tags') + ' ').indexOf(' ' + tv + ' ') !== -1;
+      var okQ = !qv || card.getAttribute('data-search').indexOf(qv) !== -1;
+      var show = okM && okT && okQ;
+      card.hidden = !show;
+      if (show) shown++;
+    });
+    count.textContent = shown + (shown === 1 ? ' note' : ' notes');
+    empty.hidden = shown !== 0;
+  }
+  function reset() { q.value = ''; member.value = ''; tag.value = ''; apply(); q.focus(); }
+
+  q.addEventListener('input', apply);
+  member.addEventListener('change', apply);
+  tag.addEventListener('change', apply);
+  document.getElementById('rn-reset').addEventListener('click', reset);
+  var clear2 = document.getElementById('rn-clear2');
+  if (clear2) clear2.addEventListener('click', reset);
+
+  grid.addEventListener('click', function (e) {
+    var chip = e.target.closest('.rn-tag');
+    if (!chip) return;
+    tag.value = chip.getAttribute('data-tag');
+    apply();
+    document.querySelector('.rn-filters').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  apply();
+})();
+</script>

@@ -1,2 +1,18 @@
 title: Dependable, Efficient, and Intelligent Computing Lab (DETAIL)
 theme: jekyll-theme-cayman
+
+# --- Reading Notes ---
+# Each reading note is a document in the `notes` collection (folder _notes/).
+# The Sveltia CMS at /admin/ creates one Markdown file per paper here.
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+
+# Give every note the `note` layout automatically (so committed files stay clean).
+defaults:
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: note

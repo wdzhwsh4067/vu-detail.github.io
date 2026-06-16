@@ -1,0 +1,66 @@
+# Sveltia CMS configuration for DETAIL Reading Notes.
+# This file is PUBLICLY readable (served by GitHub Pages) — it holds NO secrets.
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+backend:
+  name: github
+  repo: wdzhwsh4067/vu-detail.github.io   # PROTOTYPE: the fork. Change to vu-detail/vu-detail.github.io after write access is granted.
+  branch: master
+  # For a one-click "Login with GitHub" button (instead of token sign-in),
+  # deploy the sveltia-cms-auth Cloudflare Worker and set its root URL here:
+  # base_url: https://sveltia-cms-auth.YOUR-SUBDOMAIN.workers.dev
+
+# To require PR-based review (so Prof. Jiao can comment before publish) instead
+# of direct commit, uncomment the next line. NOTE: editorial_workflow is not yet
+# supported by Sveltia (planned for v1.0); it works today on Decap, or use a
+# GitHub branch-protection rule on master to force review.
+# publish_mode: editorial_workflow
+
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: notes
+    label: Reading Notes
+    label_singular: Reading Note
+    folder: _notes
+    create: true
+    slug: "{{date}}-{{fields.title}}"
+    identifier_field: title
+    summary: "{{fields.date}} — {{fields.title}} ({{fields.member}})"
+    sortable_fields: [date, title, member]
+    extension: md
+    format: yaml-frontmatter
+    fields:
+      - { name: member, label: Member name, widget: string }
+      - { name: date, label: Date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { name: title, label: Paper title, widget: string }
+      - { name: authors, label: Authors, widget: string, required: false, hint: "e.g. A. Smith, B. Lee, C. Wang" }
+      - { name: venue, label: Venue, widget: string, required: false, hint: "Conference/journal, e.g. DAC, IEEE TCAD" }
+      - { name: year, label: Year, widget: number, required: false, value_type: int, min: 1900, max: 2100 }
+      - { name: link, label: Link / DOI (URL), widget: string, required: false }
+      - { name: citation, label: Citation (IEEE), widget: text, required: false, hint: "Full IEEE-style reference" }
+      - name: tags
+        label: Tags
+        widget: select
+        multiple: true
+        min: 0
+        options:
+          - HDC
+          - approximate-computing
+          - edge-AI
+          - robustness/reliability
+          - EDA/CAD
+          - hardware-security
+          - efficient-NN
+      - { name: tldr, label: "TL;DR", widget: text, hint: "1–2 sentences" }
+      - { name: problem, label: Problem / Motivation, widget: text }
+      - { name: method, label: Key Idea / Method, widget: text }
+      - { name: contributions, label: Main Contributions, widget: text }
+      - { name: results, label: "Results (datasets / metrics / baselines)", widget: text }
+      - { name: strengths, label: Strengths, widget: text }
+      - { name: weaknesses, label: Weaknesses / Limitations, widget: text }
+      - { name: relevance, label: Relevance to DETAIL, widget: text }
+      - { name: open_questions, label: Open Questions, widget: text, required: false }
+      - { name: artifacts, label: Artifacts / code link (URL), widget: string, required: false }
+      - { name: body, label: Extra notes (optional, Markdown), widget: markdown, required: false }
