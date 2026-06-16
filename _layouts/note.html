@@ -1,11 +1,12 @@
 ---
 layout: default
 ---
-<!--
-  Single reading note. Inherits Cayman via `layout: default`.
-  Applied automatically to every doc in the `notes` collection (see _config.yml defaults).
-  Every field is guarded with {% if %} so empty ones disappear.
--->
+{% comment %}
+  Single reading note. Applied automatically to every doc in the notes collection
+  (see _config.yml defaults). Every field is guarded with a conditional so empty
+  fields disappear. (Liquid parses tags even inside HTML comments, so this uses a
+  Liquid comment, not an HTML comment.)
+{% endcomment %}
 <link rel="stylesheet" href="{{ '/assets/css/reading.css' | relative_url }}">
 
 <div class="rn rn--single">
