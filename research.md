@@ -1,7 +1,11 @@
 ---
 title: Dependable, Efficient, and Intelligent Computing Lab (DETAIL)
+layout: page
+page_heading: Research
+eyebrow: What we work on
+subtitle: A cross-layer, full-stack approach to dependable, efficient, and intelligent computing.
 ---
-## [Home](./) | [People](./people) | [**Research**](./research) | [Publication](./publication) | [About](./about) | [Artifact](./artifact) | [Reading Notes](./reading)
+
 Our overall research focuses on developing high-performant, energy-efficient, and robust-and-reliable AI/ML systems, using a cross-layer full-stack approach spanning hardware, software, and algorithm. 
 
 ## Robust/Resilient AI/ML Systems

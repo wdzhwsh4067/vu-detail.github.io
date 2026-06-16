@@ -1,0 +1,38 @@
+---
+layout: default
+---
+{% comment %}
+  Generic content page. Renders a navy header band (page.title + optional
+  page.subtitle) followed by a centered prose container for the markdown body.
+  Used by research, publication, about, artifact, teaching, people, and any
+  member profile page.
+
+  NOTE: most existing .md files set `title` to the full lab name. To get a
+  meaningful band heading, give each page a short `page_heading` front-matter
+  value (e.g. "Research"); we fall back to page.title if it is absent.
+{% endcomment %}
+{% assign band_title = page.page_heading | default: page.title %}
+
+<section class="page-band">
+  <svg class="page-band__grid" viewBox="0 0 1200 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <defs>
+      <pattern id="band-dots" width="30" height="30" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.2" fill="#13b5ea" opacity="0.4"/>
+      </pattern>
+    </defs>
+    <rect width="1200" height="240" fill="url(#band-dots)"/>
+  </svg>
+  <div class="container page-band__inner reveal">
+    {% if page.eyebrow %}<p class="page-band__eyebrow">{{ page.eyebrow }}</p>{% endif %}
+    <h1 class="page-band__title">{{ band_title }}</h1>
+    {% if page.subtitle %}<p class="page-band__subtitle">{{ page.subtitle }}</p>{% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <article class="prose reveal">
+      {{ content }}
+    </article>
+  </div>
+</section>

@@ -1,14 +1,16 @@
 ---
 title: Dependable, Efficient, and Intelligent Computing Lab (DETAIL)
+layout: page
+page_heading: Xun Jiao
+eyebrow: Director / Principal Investigator
 ---
-## [Home](../) | [**People**](../people) | [Research](../research) | [Publication](../publication) | [About](../about) | [Artifact](../artifact) 
 
 <!---
-<img src="../asset/jiao.jpg" alt="Xun Jiao" width="300">
+<img src="{{ '/asset/jiao.jpg' | relative_url }}" alt="Xun Jiao" width="300">
 -->
 
 # Xun Jiao 
-[[Curriculum Vitae]](../asset/Xun_Jiao_CV.pdf)
+[[Curriculum Vitae]]({{ '/asset/Xun_Jiao_CV.pdf' | relative_url }})
 
 Email: [xun.jiao@villanova.edu](mailto:xun.jiao@villanova.edu) 
 

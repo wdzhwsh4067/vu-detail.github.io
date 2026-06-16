@@ -1,10 +1,13 @@
 ---
 title: Dependable, Efficient, and Intelligent Computing Lab (DETAIL)
+layout: page
+page_heading: People
+eyebrow: The team
+subtitle: Faculty, students, and alumni of the DETAIL Lab.
 ---
-## [Home](./) | [**People**](./people) | [Research](./research) | [Publication](./publication) | [About](./about) | [Artifact](./artifact) | [Reading Notes](./reading)
 
 <!--
-<img src="../asset/detail_people.png" alt="detail" width="800">
+<img src="{{ '/asset/detail_people.png' | relative_url }}" alt="detail" width="800">
 -->
 
 # Current Members

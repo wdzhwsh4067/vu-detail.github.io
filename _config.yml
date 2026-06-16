@@ -1,5 +1,5 @@
 title: Dependable, Efficient, and Intelligent Computing Lab (DETAIL)
-theme: jekyll-theme-cayman
+# Custom design: own _layouts + assets/css/site.css (no remote theme).
 
 # --- Reading Notes ---
 # Each reading note is a document in the `notes` collection (folder _notes/).
@@ -11,6 +11,13 @@ collections:
 
 # Give every note the `note` layout automatically (so committed files stay clean).
 defaults:
+  # All ordinary Markdown pages get the new prose/page layout.
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+  # Reading-note documents get the single-note layout.
   - scope:
       path: ""
       type: notes

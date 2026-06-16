@@ -170,3 +170,75 @@
   .rn-card > article { transition: none; }
   .rn-card > article:hover { transform: none; }
 }
+
+
+/* ========== Villanova palette override (appended; later rules win) ========== */
+/* =============================================================================
+   reading.css PALETTE OVERRIDE — re-point the existing .rn-* design system to
+   the new Villanova navy tokens so Reading Notes inherit the redesign.
+
+   HOW TO APPLY: in assets/css/reading.css, REPLACE the variable block inside
+   the `.rn { ... }` rule (currently lines ~5-19, the `--rn-*` / `--tag-*`
+   declarations) with the block below. Keep the rest of .rn (max-width, margin,
+   line-height) — but DROP the hardcoded `font-family` line so notes inherit the
+   new Inter/Source Serif stack, OR replace it with `var(--font-sans)`.
+   Everything else in reading.css stays as-is; it already references these vars.
+
+   Because reading.css is loaded AFTER site.css in the .rn layouts, and site.css
+   defines :root tokens, these var() references resolve to the new palette.
+   ============================================================================= */
+.rn {
+  /* map the rn palette onto the global tokens */
+  --rn-ink:        var(--c-ink, #14223a);
+  --rn-ink-soft:   var(--c-ink-soft, #4a5870);
+  --rn-faint:      var(--c-faint, #7c879a);
+  --rn-line:       var(--c-line, #dde3ec);
+  --rn-surface:    var(--c-surface, #ffffff);
+  --rn-bg:         var(--c-bg, #f4f6f9);
+
+  /* indigo accent -> Villanova navy/light-blue.
+     accent = interactive light blue (links, focus, hovers);
+     accent-ink = navy for solid buttons / strong accents */
+  --rn-accent:     var(--c-accent-700, #0d92bd);
+  --rn-accent-ink: var(--c-navy, #00205b);
+  --rn-good:       #1d6e46;
+  --rn-bad:        #b6502a;
+
+  --rn-radius:     var(--radius, 14px);
+  --rn-radius-sm:  var(--radius-sm, 9px);
+  --rn-pill:       var(--pill, 999px);
+  --rn-maxw:       1080px;
+
+  --tag-default-bg: var(--c-surface-2, #eef2f7);
+  --tag-default-fg: var(--c-ink-soft, #4a5870);
+
+  /* inherit the new type stack instead of the old system-font line */
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
+}
+
+/* Note titles & the index H1 read better in the serif display face;
+   optional but recommended for harmony with the rest of the site. */
+.rn-title, .rn-note-title, .rn-card-title { font-family: var(--font-serif, Georgia, serif); }
+
+/* Re-point the per-tag accent swatches onto the navy family so the colored
+   card top-borders + chips match the redesign (keeps semantic variety,
+   navy/blue-leaning). Optional — drop if you prefer the original spectrum. */
+.rn-card[data-tag-accent="hdc"] > article                    { border-top-color: var(--c-navy); }
+.rn-card[data-tag-accent="approximate-computing"] > article  { border-top-color: var(--c-accent-700); }
+.rn-card[data-tag-accent="edge-ai"] > article                { border-top-color: #1d6e46; }
+.rn-card[data-tag-accent="robustness/reliability"] > article { border-top-color: var(--c-gold); }
+.rn-card[data-tag-accent="eda/cad"] > article                { border-top-color: #5a3ea8; }
+.rn-card[data-tag-accent="hardware-security"] > article      { border-top-color: #b6502a; }
+.rn-card[data-tag-accent="efficient-nn"] > article           { border-top-color: var(--c-accent); }
+
+.rn-tag[data-tag="hdc"]                    { background:#e6ecf9; color:var(--c-navy); }
+.rn-tag[data-tag="approximate-computing"]  { background:#e3f5fc; color:#0d6e8c; }
+.rn-tag[data-tag="edge-ai"]                { background:#e7f3ec; color:#1d6e46; }
+.rn-tag[data-tag="robustness/reliability"] { background:#faf2dd; color:#8a6516; }
+.rn-tag[data-tag="eda/cad"]                { background:#f1ecfb; color:#5a3ea8; }
+.rn-tag[data-tag="hardware-security"]      { background:#f6e9e4; color:#a3461f; }
+.rn-tag[data-tag="efficient-nn"]           { background:#e3f5fc; color:#0d6e8c; }
+
+/* The .rn .rn-btn pill used #eef1fb/#d9e0f7 hardcodes — refresh to navy tint. */
+.rn-btn { color: var(--c-navy); background: var(--c-accent-soft, #e3f5fc); border-color: #c5e9f6; }
+.rn-btn:hover { background: #d3eef9; }

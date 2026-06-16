@@ -1,7 +1,12 @@
-## [Home](../) | [**People**](../people) | [Research](../research) | [Publication](../publication) | [About](../about) | [Artifact](../artifact) 
+---
+title: Richard Wang
+layout: page
+page_heading: Richard Wang
+eyebrow: Ph.D. Candidate
+---
 
 # Richard Wang
-Ph.D. Candidate (Since 2021 Spring) [[CV]](../asset/rwang_cv.pdf)
+Ph.D. Candidate (Since 2021 Spring) [[CV]]({{ '/asset/rwang_cv.pdf' | relative_url }})
 
 Department of Electrical and Computer Engineering
 

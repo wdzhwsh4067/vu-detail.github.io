@@ -1,0 +1,197 @@
+---
+layout: default
+---
+{% comment %}
+  Home layout. index.md sets `layout: home`. The News feed is rendered directly
+  below (verbatim from the supplied content). {{ content }} from index.md is
+  still rendered at the end so any extra home markdown survives, but the legacy
+  hand-coded nav line / hit counter should be removed from index.md (see notes).
+{% endcomment %}
+
+<section class="hero">
+  <svg class="hero__grid" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <defs>
+      <pattern id="hero-dots" width="34" height="34" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.4" fill="#13b5ea" opacity="0.45"/>
+      </pattern>
+      <linearGradient id="hero-fade" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#13b5ea" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#13b5ea" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="400" fill="url(#hero-dots)"/>
+    <path d="M820 -40 L1240 -40 L1240 440 L640 440 Z" fill="url(#hero-fade)"/>
+    <path d="M900 60 L1040 200 L900 340 L760 200 Z" fill="none" stroke="#13b5ea" stroke-width="1.2" opacity="0.3"/>
+  </svg>
+
+  <div class="container hero__inner reveal">
+    <p class="hero__eyebrow"><span class="dot" aria-hidden="true"></span> Villanova University · ECE</p>
+    <h1 class="hero__short">DE<span class="accent">TAIL</span></h1>
+    <p class="hero__full">Dependable, Efficient, and Intelligent Computing Lab</p>
+    <p class="hero__mission">
+      We build high-performance, energy-efficient, and robust AI/ML systems through a
+      cross-layer, full-stack co-design of hardware, software, and algorithms.
+    </p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="{{ '/research' | relative_url }}">
+        Explore our research
+        <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn btn--ghost" href="{{ '/reading' | relative_url }}">Reading notes</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== RESEARCH AREAS ====================== -->
+<section class="section" id="research" aria-labelledby="research-h">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="section__eyebrow">What we work on</p>
+      <h2 class="section__title" id="research-h">Research themes</h2>
+      <p class="section__lead">From brain-inspired models down to reliable silicon — six threads that run through the lab’s work.</p>
+    </div>
+
+    <ul class="research-grid">
+      <li class="research-card reveal" data-reveal-delay="1">
+        <span class="research-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 0 3 3 0 0 1-2-5 3 3 0 0 1 2-5 3 3 0 0 1 3-3Z" stroke-linejoin="round"/><path d="M12 6v12M8 11h8" stroke-linecap="round"/></svg>
+        </span>
+        <h3 class="research-card__title">Hyperdimensional Computing</h3>
+        <p class="research-card__blurb">Brain-inspired HDC models for NLP, sensing, security, and drug discovery — efficient, robust, and hardware-friendly.</p>
+      </li>
+
+      <li class="research-card reveal" data-reveal-delay="2">
+        <span class="research-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 13c3-5 13-5 16 0" stroke-linecap="round"/><path d="M7 13a5 5 0 0 0 10 0" stroke-linecap="round"/><path d="M12 13v6M9 20h6" stroke-linecap="round"/></svg>
+        </span>
+        <h3 class="research-card__title">Efficient &amp; Approximate Computing</h3>
+        <p class="research-card__blurb">Trading exactness for energy: approximate arithmetic, voltage scaling, and generalizable approximation across the stack.</p>
+      </li>
+
+      <li class="research-card reveal" data-reveal-delay="3">
+        <span class="research-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h3 class="research-card__title">Robustness &amp; Reliability</h3>
+        <p class="research-card__blurb">Resilient AI against hardware faults, adversarial inputs, and environmental variation — analyzed at the algorithm and hardware levels.</p>
+      </li>
+
+      <li class="research-card reveal" data-reveal-delay="1">
+        <span class="research-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v3M14 3v3M10 18v3M14 18v3M3 10h3M3 14h3M18 10h3M18 14h3" stroke-linecap="round"/></svg>
+        </span>
+        <h3 class="research-card__title">EDA / CAD</h3>
+        <p class="research-card__blurb">Machine-learning-driven design automation: timing-error prediction, circuit error modeling, and smarter CAD flows.</p>
+      </li>
+
+      <li class="research-card reveal" data-reveal-delay="2">
+        <span class="research-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="8" width="18" height="11" rx="2"/><path d="M7 8V6a5 5 0 0 1 10 0v2" stroke-linecap="round"/><path d="M12 12v3" stroke-linecap="round"/></svg>
+        </span>
+        <h3 class="research-card__title">Edge AI &amp; Embedded Systems</h3>
+        <p class="research-card__blurb">Scalable IoT and embedded intelligence — efficient neural networks running where the data is born.</p>
+      </li>
+
+      <li class="research-card reveal" data-reveal-delay="3">
+        <span class="research-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4Z" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.2"/><path d="M12 13.2V16" stroke-linecap="round"/></svg>
+        </span>
+        <h3 class="research-card__title">Hardware Security</h3>
+        <p class="research-card__blurb">Fuzz testing for firmware, ICS protocols, and AI models — finding faults before adversaries do.</p>
+      </li>
+    </ul>
+
+    <p class="section__more reveal">
+      <a class="btn btn--quiet" href="{{ '/research' | relative_url }}">See research in depth →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ====================== LATEST NEWS ====================== -->
+<section class="section section--tint" id="news" aria-labelledby="news-h">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="section__eyebrow">From the lab</p>
+      <h2 class="section__title" id="news-h">Latest news</h2>
+      <p class="section__lead">Talks, awards, grants, and student milestones — newest first.</p>
+    </div>
+
+    <ul class="news reveal">
+      <li class="news__item"><span class="news__date">05/2023</span><span class="news__tag news__tag--talk">Talk</span><p class="news__text">Xun Jiao delivered invited talks at Peking U, HKUST (GZ), and CAS/ICT.</p></li>
+      <li class="news__item"><span class="news__date">05/2023</span><span class="news__tag news__tag--service">Service</span><p class="news__text">Xun Jiao serves as the General Chair of the Design Automation for CPS Workshop.</p></li>
+      <li class="news__item"><span class="news__date">05/2023</span><span class="news__tag news__tag--talk">Talk</span><p class="news__text">Xun Jiao delivered an invited talk at Univ of Notre Dame (Host: Prof. <a href="https://sites.nd.edu/xsharon-hu/" rel="noopener">Sharon Hu</a>).</p></li>
+      <li class="news__item"><span class="news__date">05/2023</span><span class="news__tag news__tag--student">Student</span><p class="news__text">Rahul Thapa named a 2023 <a href="https://www1.villanova.edu/university/media/press-releases/2023/2023-knight-hennessy.html" rel="noopener">Knight-Hennessy Scholar</a> at Stanford!</p></li>
+      <li class="news__item"><span class="news__date">05/2023</span><span class="news__tag news__tag--student">Student</span><p class="news__text">Caroline Maclaren named a 2023 <a href="https://www1.villanova.edu/university/media/press-releases/2023/fulbright-grants.html" rel="noopener">Fulbright Scholar</a>!</p></li>
+      <li class="news__item"><span class="news__date">05/2023</span><span class="news__tag news__tag--media">Media</span><p class="news__text">Our research is featured in <a href="https://www.wired.com/story/hyperdimensional-computing-reimagines-artificial-intelligence/" rel="noopener">WIRED</a>.</p></li>
+      <li class="news__item"><span class="news__date">04/2023</span><span class="news__tag news__tag--media">Media</span><p class="news__text">Our research is featured in <a href="https://www.quantamagazine.org/a-new-approach-to-computation-reimagines-artificial-intelligence-20230413/" rel="noopener">Quanta Magazine</a>.</p></li>
+      <li class="news__item"><span class="news__date">03/2023</span><span class="news__tag news__tag--service">Service</span><p class="news__text">Xun Jiao serves as Web Chair of <a href="https://esweek.org" rel="noopener">ESWEEK 2023</a>.</p></li>
+      <li class="news__item"><span class="news__date">03/2023</span><span class="news__tag news__tag--service">Service</span><p class="news__text">Xun Jiao serves as TPC member of <a href="https://iccad.com" rel="noopener">ICCAD 2023</a>.</p></li>
+      <li class="news__item"><span class="news__date">11/2022</span><span class="news__tag news__tag--award">Award</span><p class="news__text">Xun Jiao receives “IEEE Young Engineer of the Year Award!”</p></li>
+      <li class="news__item"><span class="news__date">08/2022</span><span class="news__tag news__tag--grant">Grant</span><p class="news__text">Our project on “<a href="https://reporter.nih.gov/search/T7r_s80tVUWcSrCg0doxWA/project-details/10438005" rel="noopener">AI-based Diagnosis of Alzheimer’s</a>” is funded by National Institute of Health!</p></li>
+      <li class="news__item"><span class="news__date">08/2022</span><span class="news__tag news__tag--grant">Grant</span><p class="news__text">Our project on “<a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2202310&amp;HistoricalAwards=false" rel="noopener">Generalizable Approximate Computing</a>” is funded by National Science Foundation!</p></li>
+      <li class="news__item"><span class="news__date">06/2022</span><span class="news__tag news__tag--grant">Grant</span><p class="news__text">Our project on “<a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2152834&amp;HistoricalAwards=false" rel="noopener">Smart Green Environment Infrastructure</a>” is funded by National Science Foundation!</p></li>
+      <li class="news__item"><span class="news__date">06/2022</span><span class="news__tag news__tag--grant">Grant</span><p class="news__text">Our project on “<a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2228035&amp;HistoricalAwards=false" rel="noopener">Sustainable Green Infrastructure</a>” is funded by National Science Foundation!</p></li>
+      <li class="news__item"><span class="news__date">05/2022</span><span class="news__tag news__tag--service">Service</span><p class="news__text">Xun Jiao serves as TPC members for <a href="https://iccad.com" rel="noopener">ICCAD 2022</a>, <a href="https://www.aspdac.com/aspdac2023/" rel="noopener">ASP-DAC 2022</a>, and <a href="http://www.ieee-cybermatics.org/2022/icess/" rel="noopener">ICESS 2022</a>.</p></li>
+      <li class="news__item"><span class="news__date">02/2022</span><span class="news__tag news__tag--student">Student</span><p class="news__text">Mauro Sanchirico receives College of Engineering <strong>Outstanding Graduate Student Award</strong> (1 annually).</p></li>
+      <li class="news__item"><span class="news__date">02/2022</span><span class="news__tag news__tag--award">Award</span><p class="news__text">Our paper “Energy-Efficient Hyperdimensional Computing” at <a href="https://www.date-conference.com/programme" rel="noopener">DATE 2022</a> is a <strong>Best Paper Candidate</strong>!</p></li>
+      <li class="news__item"><span class="news__date">12/2021</span><span class="news__tag news__tag--media">Media</span><p class="news__text">Xun Jiao was interviewed by <a href="https://www.digitalengineering247.com/article/the-coming-of-age-of-ai-and-machine-learning-in-design/fea" rel="noopener">Digital Engineering Magazine</a>.</p></li>
+      <li class="news__item"><span class="news__date">10/2021</span><span class="news__tag news__tag--student">Student</span><p class="news__text">Dongning Ma, Ruixuan Wang and Sizhe Zhang are <a href="https://www.dac.com/Attend/Students-Scholarships/Young-Student-Fellow-Program" rel="noopener">DAC 2021 Young Fellows</a>!</p></li>
+      <li class="news__item"><span class="news__date">10/2021</span><span class="news__tag news__tag--service">Service</span><p class="news__text">Xun Jiao is invited to serve as a TPC track co-chair for <a href="https://www.dac.com" rel="noopener">DAC 2022</a>.</p></li>
+      <li class="news__item"><span class="news__date">09/2021</span><span class="news__tag news__tag--service">Service</span><p class="news__text">Xun Jiao is invited to serve on NSF and DoE panel.</p></li>
+      <li class="news__item"><span class="news__date">06/2021</span><span class="news__tag news__tag--service">Service</span><p class="news__text">Dr. Jiao serves as the lead guest editor of the <a href="https://www.frontiersin.org/research-topics/22893/brain-inspired-hyperdimensional-computing-algorithms-models-and-architectures" rel="noopener">Frontiers in Neuroscience — Neuromorphic Engineering</a>.</p></li>
+      <li class="news__item"><span class="news__date">12/2020</span><span class="news__tag news__tag--service">Service</span><p class="news__text">Xun Jiao will serve on the TPC and track co-chair of <a href="https://www.dac.com" rel="noopener">DAC 2021</a>.</p></li>
+      <li class="news__item"><span class="news__date">11/2020</span><span class="news__tag news__tag--grant">Grant</span><p class="news__text">Our project on “<a href="https://www1.villanova.edu/content/villanova/engineering/newsevents/newsarchives/2020/faculty-research/CAC-industry-contract.html" rel="noopener">Machine Learning-based Signal Processing</a>” is funded by L3 Harris!</p></li>
+      <li class="news__item"><span class="news__date">08/2020</span><span class="news__tag news__tag--grant">Grant</span><p class="news__text">Our planning project on “<a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2028889&amp;HistoricalAwards=false" rel="noopener">Scalable IoT Systems</a>” is funded by National Science Foundation!</p></li>
+      <li class="news__item"><span class="news__date">08/2020</span><span class="news__tag news__tag--award">Award</span><p class="news__text">Our paper on “Secure Firmware Fuzzing” is a <strong>Best Paper Candidate</strong> in EMSOFT 2020!</p></li>
+      <li class="news__item"><span class="news__date">08/2020</span><span class="news__tag news__tag--award">Award</span><p class="news__text">Our paper on “Efficient Neural Networks” receives <strong>Outstanding Paper Award</strong> in DSD 2020!</p></li>
+      <li class="news__item"><span class="news__date">04/2020</span><span class="news__tag news__tag--talk">Talk</span><p class="news__text">Dr. Xun Jiao delivered an invited presentation in the <strong>U.S. Congressional House</strong>.</p></li>
+      <li class="news__item"><span class="news__date">04/2020</span><span class="news__tag news__tag--award">Award</span><p class="news__text">Our paper on “Machine Learning-based Circuit Error Modeling” is selected as a <strong>Best Paper</strong> of SELSE 2020.</p></li>
+      <li class="news__item"><span class="news__date">01/2020</span><span class="news__tag news__tag--service">Service</span><p class="news__text">Xun Jiao is appointed as an Associate Editor of <a href="https://www.sigda.org/publications/newsletter/" rel="noopener">ACM SIGDA Newsletter</a>.</p></li>
+      <li class="news__item"><span class="news__date">11/2019</span><span class="news__tag news__tag--service">Service</span><p class="news__text">Xun Jiao serves on the TPC of DAC, GLSVLSI, and LCTES.</p></li>
+      <li class="news__item"><span class="news__date">07/2019</span><span class="news__tag news__tag--award">Award</span><p class="news__text">Our paper on “Secure ICS Protocol Fuzzing” is a <strong>Best Paper Candidate</strong> in EMSOFT 2019!</p></li>
+      <li class="news__item"><span class="news__date">06/2019</span><span class="news__tag news__tag--award">Award</span><p class="news__text">Our paper on “Cyber-Physical System Design” wins the <strong>Best Paper Award</strong> in CPSCOM 2019!</p></li>
+      <li class="news__item"><span class="news__date">12/2018</span><span class="news__tag news__tag--service">Service</span><p class="news__text">Xun Jiao has been appointed as Associate Editor of <a href="https://ieee-ceda.org/publication/tcad-publication/committee/tcad-editorial-board" rel="noopener">IEEE Transactions on CAD</a> (IEEE TCAD)!</p></li>
+      <li class="news__item"><span class="news__date">08/2018</span><span class="news__tag news__tag--misc">Misc</span><p class="news__text">Xun Jiao joined Villanova University as Tenure-Track Assistant Professor.</p></li>
+      <li class="news__item"><span class="news__date">06/2018</span><span class="news__tag news__tag--misc">Misc</span><p class="news__text">Xun Jiao defended his PhD thesis and is now Dr. Xun Jiao!</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====================== RECENT READING NOTES ====================== -->
+<section class="section" id="reading-teaser" aria-labelledby="reading-h">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="section__eyebrow">Paper club</p>
+      <h2 class="section__title" id="reading-h">Recent reading notes</h2>
+      <p class="section__lead">Weekly notes on the papers shaping our research directions.</p>
+    </div>
+
+    {% assign recent_notes = site.notes | sort: 'date' | reverse %}
+    <ul class="notes-teaser reveal">
+      {% if recent_notes.size > 0 %}
+        {% for note in recent_notes limit: 3 %}
+          <li>
+            <a class="note-card" href="{{ note.url | relative_url }}">
+              <span class="note-card__meta">
+                <span class="note-card__member">{{ note.member | escape | default: 'DETAIL' }}</span>
+                {% if note.date %}<time datetime="{{ note.date | date: '%Y-%m-%d' }}">{{ note.date | date: '%Y-%m-%d' }}</time>{% endif %}
+              </span>
+              <h3 class="note-card__title">{{ note.title | escape | default: 'Untitled note' }}</h3>
+              {% if note.tldr %}<p class="note-card__tldr">{{ note.tldr | escape | truncate: 130 }}</p>{% endif %}
+              <span class="note-card__cta">Read note →</span>
+            </a>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li class="notes-teaser__empty">No reading notes yet — <a href="{{ '/reading' | relative_url }}">check back soon</a>.</li>
+      {% endif %}
+    </ul>
+
+    <p class="section__more reveal">
+      <a class="btn btn--quiet" href="{{ '/reading' | relative_url }}">All reading notes →</a>
+    </p>
+
+    {% comment %} Any extra markdown authored in index.md after the front matter still renders here. {% endcomment %}
+    {{ content }}
+  </div>
+</section>

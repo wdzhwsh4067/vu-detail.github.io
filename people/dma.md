@@ -1,12 +1,14 @@
 ---
 title: Dependable, Efficient, and Intelligent Computing Lab (DETAIL)
+layout: page
+page_heading: Dongning Ma
+eyebrow: Ph.D., Alumnus
 ---
-## [Home](../) | [**People**](../people) | [Research](../research) | [Publication](../publication) | [About](../about) | [Artifact](../artifact) 
 
-<img src="../asset/dma2.jfif" alt="Dongning Ma" width="280">
+<img src="{{ '/asset/dma2.jfif' | relative_url }}" alt="Dongning Ma" width="280">
 
 # Dongning Ma
-Ph.D. Candidate [[CV]](../asset/dma_cv.pdf) [[Google Scholar]](https://scholar.google.com/citations?user=XlJuTdcAAAAJ&hl=en) [[LinkedIn]](https://www.linkedin.com/in/dongning-ma-73ab5b185/)
+Ph.D. Candidate [[CV]]({{ '/asset/dma_cv.pdf' | relative_url }}) [[Google Scholar]](https://scholar.google.com/citations?user=XlJuTdcAAAAJ&hl=en) [[LinkedIn]](https://www.linkedin.com/in/dongning-ma-73ab5b185/)
 
 Department of Electrical and Computer Engineering
 

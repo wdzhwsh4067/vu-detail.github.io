@@ -1,7 +1,11 @@
 ---
 title: Dependable, Efficient, and Intelligent Computing Lab (DETAIL)
+layout: page
+page_heading: Artifacts
+eyebrow: Open code & data
+subtitle: Public repositories accompanying our papers.
 ---
-## [Home](./) | [People](./people) | [Research](./research) | [Publication](./publication) | [About](./about) | [**Artifact**](./artifact) | [Reading Notes](./reading)
+
  - [Workload-Aware Approximate Computing Configuration (DATE'21)](https://github.com/ThapaRahul/DETAIL-Input-Aware-CodeBase)
  - [Hyperdimensional Computing Hub: A hub for HDC implementations of different applications](https://github.com/VU-DETAIL/HD-Hub)
  - [SpamHD: Memory-Efficient Text Spam Detection using Brain-Inspired Hyperdimensional Computing (ISVLSI'21)](https://github.com/AikawaMafuyu/HamHD)
